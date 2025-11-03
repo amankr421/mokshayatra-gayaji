@@ -98,3 +98,38 @@
     background: var(--secondary);
     transform: scale(1.1);
 }
+
+
+/* Add this to your existing celebrity.css */
+.carousel-container {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 1rem 0;
+    cursor: grab;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-container:active {
+    cursor: grabbing;
+}
+
+/* Button disabled states */
+.carousel-prev:disabled,
+.carousel-next:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.carousel-prev:disabled:hover,
+.carousel-next:disabled:hover {
+    background: var(--primary) !important;
+    box-shadow: 0 8px 20px rgba(255, 179, 0, 0.3) !important;
+}
