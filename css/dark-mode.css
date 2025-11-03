@@ -1,0 +1,208 @@
+/* Dark Mode Variables */
+:root {
+    --dark-bg-primary: #0f172a;
+    --dark-bg-secondary: #1e293b;
+    --dark-text-primary: #f1f5f9;
+    --dark-text-secondary: #cbd5e1;
+    --dark-border: #334155;
+    --dark-shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background: var(--dark-bg-primary);
+    color: var(--dark-text-primary);
+    transition: all 0.4s ease;
+}
+
+/* Dark Mode Navbar */
+body.dark-mode .navbar {
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom-color: var(--dark-border);
+}
+
+body.dark-mode .navbar.scrolled {
+    background: rgba(15, 23, 42, 0.98);
+    box-shadow: 0 4px 30px var(--dark-shadow);
+}
+
+/* Dark Mode Hero Section */
+body.dark-mode .hero {
+    background: linear-gradient(135deg, var(--dark-bg-primary), var(--dark-bg-secondary));
+}
+
+body.dark-mode .glass-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(139, 0, 0, 0.4) 0%,
+        rgba(255, 179, 0, 0.3) 100%
+    );
+}
+
+/* Dark Mode Sections */
+body.dark-mode .about,
+body.dark-mode .packages,
+body.dark-mode .ritual-importance,
+body.dark-mode .history,
+body.dark-mode .celebrity,
+body.dark-mode .gallery,
+body.dark-mode .testimonials,
+body.dark-mode .contact {
+    background: linear-gradient(135deg, var(--dark-bg-primary), var(--dark-bg-secondary));
+}
+
+/* Dark Mode Cards */
+body.dark-mode .package-card,
+body.dark-mode .ritual-card,
+body.dark-mode .testimonial-card,
+body.dark-mode .info-item {
+    background: rgba(30, 41, 59, 0.6);
+    border-color: var(--dark-border);
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .package-card:hover,
+body.dark-mode .ritual-card:hover,
+body.dark-mode .testimonial-card:hover {
+    background: rgba(30, 41, 59, 0.8);
+    box-shadow: 0 20px 40px var(--dark-shadow);
+}
+
+/* Dark Mode Text */
+body.dark-mode .section-title {
+    color: var(--primary);
+}
+
+body.dark-mode .hero-title,
+body.dark-mode .hero-subtitle {
+    color: var(--dark-text-primary);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .about-text p,
+body.dark-mode .history-text p,
+body.dark-mode .ritual-card p,
+body.dark-mode .testimonial-card p {
+    color: var(--dark-text-secondary);
+}
+
+/* Dark Mode Forms */
+body.dark-mode .input-icon input,
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: var(--dark-border);
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .input-icon input:focus,
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group select:focus,
+body.dark-mode .form-group textarea:focus {
+    border-color: var(--primary);
+    background: rgba(30, 41, 59, 1);
+}
+
+body.dark-mode .input-icon i {
+    color: var(--primary);
+}
+
+/* Dark Mode Footer */
+body.dark-mode .footer {
+    background: linear-gradient(135deg, var(--dark-bg-secondary), #0a0f1c);
+}
+
+body.dark-mode .footer::before {
+    color: rgba(255, 255, 255, 0.05);
+}
+
+/* Dark Mode Auth Pages */
+body.dark-mode .auth-body {
+    background: linear-gradient(135deg, var(--dark-bg-primary), var(--dark-bg-secondary));
+}
+
+body.dark-mode .auth-glass {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: var(--dark-border);
+}
+
+body.dark-mode .auth-header h2 {
+    color: var(--primary);
+}
+
+body.dark-mode .auth-header p {
+    color: var(--dark-text-secondary);
+}
+
+/* Dark Mode Dashboard */
+body.dark-mode .dashboard-body {
+    background: var(--dark-bg-primary);
+}
+
+body.dark-mode .dashboard-sidebar {
+    background: var(--dark-bg-secondary);
+    box-shadow: 0 0 20px var(--dark-shadow);
+}
+
+body.dark-mode .nav-item {
+    color: var(--dark-text-secondary);
+    border-left-color: transparent;
+}
+
+body.dark-mode .nav-item:hover,
+body.dark-mode .nav-item.active {
+    background: rgba(255, 179, 0, 0.1);
+    border-left-color: var(--primary);
+    color: var(--primary);
+}
+
+body.dark-mode .stat-card,
+body.dark-mode .action-card {
+    background: var(--dark-bg-secondary);
+    box-shadow: 0 4px 20px var(--dark-shadow);
+}
+
+body.dark-mode .action-card:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* Dark Mode Modal */
+body.dark-mode .modal-content {
+    background: var(--dark-bg-secondary);
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .close-modal {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .close-modal:hover {
+    color: var(--primary);
+}
+
+/* Dark Mode Back to Top */
+body.dark-mode .back-to-top {
+    background: var(--primary);
+    color: var(--dark-bg-primary);
+}
+
+body.dark-mode .back-to-top:hover {
+    background: var(--secondary);
+}
+
+/* Dark Mode Audio Toggle */
+body.dark-mode .audio-toggle {
+    background: var(--primary);
+    color: var(--dark-bg-primary);
+}
+
+body.dark-mode .audio-toggle:hover {
+    background: var(--secondary);
+}
+
+/* Smooth Transitions */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

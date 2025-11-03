@@ -1,0 +1,71 @@
+.history {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #fff 0%, #f7e9c0 100%);
+    position: relative;
+}
+
+.history::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path d="M20,20 Q50,5 80,20 T100,50 T80,80 T50,100 T20,80 T0,50 T20,20 Z" fill="%238b0000"/></svg>');
+    background-size: 300px;
+}
+
+.history-content {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 3rem;
+    position: relative;
+    z-index: 1;
+    box-shadow: var(--shadow);
+}
+
+.history-text {
+    position: relative;
+}
+
+.history-text::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    border-radius: 5px;
+}
+
+.history-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: justify;
+    animation: scrollReveal 1s ease-out;
+}
+
+@keyframes scrollReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .history-content {
+        padding: 2rem;
+    }
+    
+    .history-text::before {
+        left: -10px;
+    }
+}

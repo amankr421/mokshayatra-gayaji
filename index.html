@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MokshaYatra – The Sacred Pilgrimage of Gaya Ji</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/packages.css">
+    <link rel="stylesheet" href="css/ritual.css">
+    <link rel="stylesheet" href="css/history.css">
+    <link rel="stylesheet" href="css/celebrity.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/testimonials.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="om-symbol">
+            <span>ॐ</span>
+        </div>
+        <p>Loading Divine Journey...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo and Brand -->
+            <a href="#home" class="nav-logo">
+                <div class="logo-container">
+                    <!-- <div class="om-symbol-small">ॐ</div> -->
+                    <h2>MokshaYatra</h2>
+                </div>
+            </a>
+
+        <!-- Navigation Menu -->
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#packages" class="nav-link">Packages</a>
+                <a href="#ritual" class="nav-link">Rituals</a>
+                <a href="#history" class="nav-link">History</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            
+                <!-- Auth Section -->
+                <div class="nav-auth">
+                    <!-- This will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="video-background">
+            <video autoplay muted loop id="hero-video">
+                <source src="assets/videos/#" type="video/mp4">
+                <!-- Fallback image if video doesn't load -->
+            </video>
+        </div>
+        <div class="glass-overlay"></div>
+        <div class="hero-content">
+            <div class="om-animation">
+                <span>ॐ</span>
+            </div>
+            <h1 class="hero-title">Welcome to the Land of Moksha – Gaya Ji</h1>
+            <p class="hero-subtitle">Perform Pind Daan with faith and peace at Vishnupad Temple</p>
+            <button class="cta-button" id="book-journey">
+                Book Your Journey
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">About Gaya Ji – The Land of Liberation</h2>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <p>Gaya Ji holds immense significance in Hinduism as the place where Lord Rama, along with Sita and Lakshmana, performed Pind Daan for King Dasharatha. It is believed that performing Shraddha rituals here brings salvation to ancestors.</p>
+                    
+                    <p>Pitru Paksha Mela is a 16-day period dedicated to honoring ancestors through Pind Daan rituals. During this sacred time, thousands of devotees gather in Gaya to perform these rites for their departed loved ones.</p>
+                    
+                    <div class="quote-banner" data-aos="zoom-in">
+                        "In Gaya, every offering becomes a bridge to eternity."
+                    </div>
+                    
+                    <div class="motive-section" data-aos="fade-up">
+                        <h3>Our Motive</h3>
+                        <p>To simplify and spiritualize your sacred journey — with faith, comfort, and devotion.</p>
+                    </div>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <img src="assets/images/temple 3.webp" alt="Vishnupad Temple">
+                    <div class="om-watermark">ॐ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages" id="packages">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Sacred Journey Packages</h2>
+            <div class="packages-grid">
+                <!-- Silver Package -->
+                <div class="package-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="package-header">
+                        <h3>Silver</h3>
+                        <div class="price">₹10,000</div>
+                    </div>
+                    <div class="package-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>Comfortable Accommodation</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user"></i>
+                            <span>Basic Panda Ji Assistance</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-car"></i>
+                            <span>Local Transport</span>
+                        </div>
+                    </div>
+                    <button class="select-plan" data-plan="Silver">Select Plan</button>
+                </div>
+
+                <!-- Gold Package -->
+                <div class="package-card featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="package-badge">Most Popular</div>
+                    <div class="package-header">
+                        <h3>Gold</h3>
+                        <div class="price">₹15,000</div>
+                    </div>
+                    <div class="package-features">
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <span>Premium Accommodation</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user"></i>
+                            <span>Experienced Panda Ji</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-car"></i>
+                            <span>AC Transport</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-utensils"></i>
+                            <span>Satvik Meals</span>
+                        </div>
+                    </div>
+                    <button class="select-plan" data-plan="Gold">Select Plan</button>
+                </div>
+
+                <!-- Platinum Package -->
+                <div class="package-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="package-header">
+                        <h3>Platinum</h3>
+                        <div class="price">₹25,000</div>
+                    </div>
+                    <div class="package-features">
+                        <div class="feature">
+                            <i class="fas fa-hotel"></i>
+                            <span>Luxury Accommodation</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Senior Panda Ji</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-car-alt"></i>
+                            <span>Premium AC Transport</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-utensils"></i>
+                            <span>All Meals Included</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Complete Ritual Management</span>
+                        </div>
+                    </div>
+                    <button class="select-plan" data-plan="Platinum">Select Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="booking-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Book Your Sacred Journey</h2>
+            <form id="booking-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <select id="people" name="people" required>
+                        <option value="">Number of People</option>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5+">5+ People</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="plan" name="plan" required>
+                        <option value="">Select Package</option>
+                        <option value="Silver">Silver - ₹10,000</option>
+                        <option value="Gold">Gold - ₹15,000</option>
+                        <option value="Platinum">Platinum - ₹25,000</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Submit Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Ritual Importance Section -->
+    <section class="ritual-importance" id="ritual">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">The Sacred Significance of Pind Daan</h2>
+            <div class="ritual-cards">
+                <div class="ritual-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="ritual-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Scriptural Sanctity</h3>
+                    <p>Mentioned in Vedas & Puranas as essential for ancestral peace and spiritual progress.</p>
+                </div>
+                <div class="ritual-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="ritual-icon">
+                        <i class="fas fa-dove"></i>
+                    </div>
+                    <h3>Moksha Guarantee</h3>
+                    <p>Ensures liberation for ancestors from the cycle of birth and rebirth.</p>
+                </div>
+                <div class="ritual-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="ritual-icon">
+                        <i class="fas fa-peace"></i>
+                    </div>
+                    <h3>Ancestral Peace</h3>
+                    <p>Brings eternal peace and contentment to departed souls in their spiritual journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="history" id="history">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">History & Beliefs of Pind Daan</h2>
+            <div class="history-content" data-aos="fade-up">
+                <div class="history-text">
+                    <p>The origin of Pind Daan traces back to Garuda Purana and other ancient scriptures. According to legend, Lord Vishnu's footprint (Vishnupad) in Gaya makes it the most sacred place for performing ancestral rites.</p>
+                    
+                    <p>It is believed that when Pind Daan is performed in Gaya, the offerings directly reach the ancestors, freeing them from any unresolved earthly attachments and granting them moksha (liberation).</p>
+                    
+                    <p>The ancient beliefs behind Pitru Paksha emphasize that during these 16 days, the veil between worlds is thinnest, allowing our prayers and offerings to reach our ancestors directly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Celebrity Section -->
+    <section class="celebrity" id="celebrity">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Notable Devotees & Visitors</h2>
+            <div class="celebrity-carousel" data-aos="fade-up">
+                <div class="carousel-container">
+                    <div class="celebrity-card">
+                        <div class="celebrity-image">
+                            <img src="assets/images/b.webp" alt="Mukesh Ambani">
+                        </div>
+                        <div class="celebrity-info">
+                            <h3>Mukesh Ambani</h3>
+                            <p>Visited Gaya Ji in 2023 to perform Pind Daan for ancestors with family.</p>
+                        </div>
+                    </div>
+                    <div class="celebrity-card">
+                        <div class="celebrity-image">
+                            <img src="assets/images/a.jpg" alt="President Murmu">
+                        </div>
+                        <div class="celebrity-info">
+                            <h3>President Droupadi Murmu</h3>
+                            <p>Performed ancestral rituals at Vishnupad Temple during Pitru Paksha.</p>
+                        </div>
+                    </div>
+                    <div class="celebrity-card">
+                        <div class="celebrity-image">
+                            <img src="assets/images/g.jpg" alt="PM Modi">
+                        </div>
+                        <div class="celebrity-info">
+                            <h3>Prime Minister Narendra Modi</h3>
+                            <p>Offered prayers for his forefathers at the sacred Vishnupad Temple.</p>
+                        </div>
+                    </div>
+                    <div class="celebrity-card">
+                        <div class="celebrity-image">
+                            <img src="assets/images/a.jpg" alt="PM Modi">
+                        </div>
+                        <div class="celebrity-info">
+                            <h3>Prime Minister Narendra Modi</h3>
+                            <p>Offered prayers for his forefathers at the sacred Vishnupad Temple.</p>
+                        </div>
+                    </div>
+                    <div class="celebrity-card">
+                        <div class="celebrity-image">
+                            <img src="assets/images/e.jpg" alt="PM Modi">
+                        </div>
+                        <div class="celebrity-info">
+                            <h3>Prime Minister Narendra Modi</h3>
+                            <p>Offered prayers for his forefathers at the sacred Vishnupad Temple.</p>
+                        </div>
+                    </div>
+                    <div class="celebrity-card">
+                        <div class="celebrity-image">
+                            <img src="assets/images/f.jpg" alt="PM Modi">
+                        </div>
+                        <div class="celebrity-info">
+                            <h3>Prime Minister Narendra Modi</h3>
+                            <p>Offered prayers for his forefathers at the sacred Vishnupad Temple.</p>
+                        </div>
+                    </div>
+                    <div class="celebrity-card">
+                        <div class="celebrity-image">
+                            <img src="assets/images/h.jpg" alt="PM Modi">
+                        </div>
+                        <div class="celebrity-info">
+                            <h3>Prime Minister Narendra Modi</h3>
+                            <p>Offered prayers for his forefathers at the sacred Vishnupad Temple.</p>
+                        </div>
+                    </div>
+                    <div class="celebrity-card">
+                        <div class="celebrity-image">
+                            <img src="assets/images/i.jpg" alt="PM Modi">
+                        </div>
+                        <div class="celebrity-info">
+                            <h3>Prime Minister Narendra Modi</h3>
+                            <p>Offered prayers for his forefathers at the sacred Vishnupad Temple.</p>
+                        </div>
+                    </div>
+                    <div class="celebrity-card">
+                        <div class="celebrity-image">
+                            <img src="assets/images/k.avif" alt="PM Modi">
+                        </div>
+                        <div class="celebrity-info">
+                            <h3>Prime Minister Narendra Modi</h3>
+                            <p>Offered prayers for his forefathers at the sacred Vishnupad Temple.</p>
+                        </div>
+                    </div>
+                    <div class="celebrity-card">
+                        <div class="celebrity-image">
+                            <img src="assets/images/c.avif" alt="PM Modi">
+                        </div>
+                        <div class="celebrity-info">
+                            <h3>Prime Minister Narendra Modi</h3>
+                            <p>Offered prayers for his forefathers at the sacred Vishnupad Temple.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Sacred Moments Gallery</h2>
+            <div class="gallery-container" data-aos="fade-up">
+                <div class="gallery-slider">
+                    <!-- Gallery images will be loaded here -->
+                </div>
+                <div class="gallery-controls">
+                    <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Pilgrims Speak</h2>
+            <div class="testimonials-grid" data-aos="fade-up">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="assets/images/user1.jpg" alt="Ramesh Kumar">
+                        <div class="user-info">
+                            <h4>Ramesh Kumar</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"The spiritual experience at Vishnupad Temple was transformative. The Panda Ji arranged through MokshaYatra was knowledgeable and made the rituals meaningful."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="assets/images/user2.jpg" alt="Priya Sharma">
+                        <div class="user-info">
+                            <h4>Priya Sharma</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Our family's journey to Gaya Ji was seamless with MokshaYatra. The accommodation was comfortable and the ritual guidance was authentic and respectful."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="assets/images/user3.jpg" alt="Anil Verma">
+                        <div class="user-info">
+                            <h4>Anil Verma</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Performing Pind Daan for my father brought immense peace. The team at MokshaYatra handled everything with devotion and professionalism."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Connect With Us</h2>
+            <div class="contact-content" data-aos="fade-up">
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="contact-name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="contact-email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Vishnupad Temple Road, Gaya, Bihar 823001</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@mokshayatra.com</p>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <div id="map">
+                            <!-- Google Map will be embedded here -->
+                            <img src="assets/images/gaya-map.jpg" alt="Gaya Map" style="width:100%; height:200px; border-radius:10px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audio Toggle -->
+    <div class="audio-toggle" id="audio-toggle">
+        <i class="fas fa-volume-mute"></i>
+    </div>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="om-symbol-small">ॐ</div>
+                        <h3>MokshaYatra</h3>
+                    </div>
+                    <p class="footer-motto">Om Shanti</p>
+                    <p>Your sacred journey to ancestral peace and liberation.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Gaya Ji</a></li>
+                        <li><a href="#packages">Packages</a></li>
+                        <li><a href="#ritual">Rituals</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MokshaYatra. All rights reserved. | The Sacred Pilgrimage of Gaya Ji</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    
+    <!-- JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/packages.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

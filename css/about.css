@@ -1,0 +1,94 @@
+.about {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f7e9c0 0%, #fff 100%);
+    position: relative;
+}
+
+.about::before {
+    content: 'ॐ';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20rem;
+    color: rgba(139, 0, 0, 0.03);
+    z-index: 0;
+    animation: floatOm 10s ease-in-out infinite;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.quote-banner {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-style: italic;
+    font-size: 1.3rem;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+}
+
+.motive-section {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: var(--border);
+    margin-top: 2rem;
+}
+
+.motive-section h3 {
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.about-image {
+    position: relative;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.om-watermark {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    font-size: 8rem;
+    color: var(--primary);
+    opacity: 0.1;
+    animation: rotateOm 20s linear infinite;
+}
+
+@media (max-width: 968px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .about-image {
+        order: -1;
+    }
+    
+    .about::before {
+        font-size: 10rem;
+    }
+}
