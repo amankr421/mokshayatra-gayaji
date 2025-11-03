@@ -120,3 +120,28 @@ function updateNavbarForLoggedInUser() {
         }
     }
 }
+
+
+
+// Toast notification function
+function showToast(message, type = 'info') {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+
+    toast.textContent = message;
+    toast.className = 'toast show';
+    
+    // Add type class
+    if (type === 'success') {
+        toast.classList.add('success');
+    } else if (type === 'error') {
+        toast.classList.add('error');
+    } else if (type === 'warning') {
+        toast.classList.add('warning');
+    }
+    
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}

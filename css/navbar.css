@@ -1,3 +1,4 @@
+/* Navbar Styles - Updated Design */
 .navbar {
     position: fixed;
     top: 0;
@@ -17,32 +18,71 @@
 }
 
 .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    width: 100%;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 70px;
+    position: relative;
 }
 
+
+/* Logo Section - Left aligned */
 .nav-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+
+/* Fallback if logo image not available */
+.logo-container::before {
+    content: '🕉️';
+    font-size: 1.5rem;
+    display: none;
+}
+
+.logo-container:has(.logo-img:not([src]))::before {
+    display: block;
 }
 
 .nav-logo h2 {
     font-family: 'Great Vibes', cursive;
     font-size: 1.8rem;
     color: var(--secondary);
+    margin: 0;
+    white-space: nowrap;
 }
 
+/* Navigation Menu - Perfect Center Alignment */
 .nav-menu {
     display: flex;
+    align-items: center;
     gap: 2rem;
     list-style: none;
+    margin: 0 auto; /* center me lane ke liye */
+    padding: 0;
+    position: relative; /* pehle absolute tha — hatao */
+    left: auto;
+    transform: none;
 }
+
 
 .nav-link {
     text-decoration: none;
@@ -51,6 +91,8 @@
     position: relative;
     padding: 0.5rem 0;
     transition: var(--transition);
+    font-size: 0.95rem;
+    white-space: nowrap;
 }
 
 .nav-link::after {
@@ -74,11 +116,148 @@
     color: var(--primary);
 }
 
+/* Auth Section - Right aligned with only Sign In */
+.nav-auth {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}
+
+
+.signin-btn {
+    display: flex;
+    align-items: right;
+    gap: 8px;
+    padding: 8px 20px;
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.signin-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 179, 0, 0.3);
+}
+
+.signin-btn i {
+    font-size: 0.9rem;
+}
+
+
+
+/* User Menu Styles (when logged in) */
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.user-menu:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.user-name {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+    z-index: 1000;
+    border: 1px solid #e0e0e0;
+}
+
+.user-menu:hover .user-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: var(--transition);
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.85rem;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background: #f8f9fa;
+    color: var(--primary);
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 0.25rem 0;
+}
+
+.logout-btn {
+    color: #ff4757 !important;
+}
+
+.logout-btn:hover {
+    background: #ff4757 !important;
+    color: white !important;
+}
+
+/* Mobile Menu Toggle */
 .hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
     gap: 4px;
+    margin-left: 1rem;
+    z-index: 2;
 }
 
 .hamburger span {
@@ -100,11 +279,12 @@
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
-
-
-
-
+/* Mobile Responsive */
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
     .hamburger {
         display: flex;
     }
@@ -122,7 +302,9 @@
         justify-content: flex-start;
         padding-top: 2rem;
         transition: var(--transition);
-        gap: 2rem;
+        gap: 1.5rem;
+        transform: none;
+        left: -100%;
     }
 
     .nav-menu.active {
@@ -130,7 +312,91 @@
     }
 
     .nav-link {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding: 1rem 0;
     }
+
+    .nav-auth {
+        margin: 1rem 0;
+        order: 3;
+    }
+
+    .signin-btn {
+        padding: 10px 24px;
+        font-size: 1rem;
+    }
+
+    .logo-img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .nav-logo h2 {
+        font-size: 1.6rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 0.5rem;
+    }
+    
+    .nav-logo h2 {
+        font-size: 1.4rem;
+    }
+    
+    .logo-img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+
+
+
+/*Fix Sign In button alignment*/
+/* .nav-container {
+    padding-left: 2rem;
+    padding-right: 0;
+}
+
+.nav-auth {
+    margin-right: 2rem;
+}
+
+.signin-btn {
+    margin-right: 0;
+} */
+
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* separates left logo and right button */
+    width: 100%;
+    position: relative;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* make menu centered */
+.nav-menu {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* send sign-in button to far right */
+.nav-auth {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
 }

@@ -1,9 +1,13 @@
-// Navbar functionality
+// Navbar functionality with Auth
 function initNavbar() {
     const navbar = document.getElementById('navbar');
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
+    const navAuth = document.querySelector('.nav-auth');
+
+    // Initialize auth state
+    updateAuthUI();
 
     // Sticky navbar on scroll
     window.addEventListener('scroll', function() {
@@ -62,4 +66,92 @@ function initNavbar() {
             });
         });
     }
+
+    // Auth state change listener
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'mokshayatra_current_user') {
+            updateAuthUI();
+        }
+    });
 }
+
+// Update auth UI based on login state - ONLY SIGN IN BUTTON
+function updateAuthUI() {
+    const navAuth = document.querySelector('.nav-auth');
+    if (!navAuth) return;
+
+    const currentUser = JSON.parse(localStorage.getItem('mokshayatra_current_user'));
+    
+    if (currentUser) {
+        // User is logged in - show user menu
+        const userInitials = getInitials(currentUser.firstName + ' ' + currentUser.lastName);
+        
+        navAuth.innerHTML = `
+            <div class="user-menu">
+                <div class="user-avatar">${userInitials}</div>
+                <span class="user-name">${currentUser.firstName}</span>
+                <div class="user-dropdown">
+                    <a href="dashboard.html" class="dropdown-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                    <a href="profile.html" class="dropdown-item">
+                        <i class="fas fa-user"></i>
+                        Profile
+                    </a>
+                    <a href="bookings.html" class="dropdown-item">
+                        <i class="fas fa-calendar-check"></i>
+                        My Bookings
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item logout-btn" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        `;
+
+        // Add logout functionality
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                logoutUser();
+            });
+        }
+    } else {
+        // User is not logged in - show ONLY SIGN IN button with icon
+        navAuth.innerHTML = `
+            <a href="login.html" class="signin-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                Sign In
+            </a>
+        `;
+    }
+}
+
+// Get user initials for avatar
+function getInitials(name) {
+    return name.split(' ')
+        .map(part => part.charAt(0))
+        .join('')
+        .toUpperCase()
+        .substring(0, 2);
+}
+
+// Logout user
+function logoutUser() {
+    localStorage.removeItem('mokshayatra_current_user');
+    showToast('Logged out successfully', 'success');
+    
+    // Redirect to home page after logout
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 1000);
+}
+
+// Initialize navbar when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initNavbar();
+});
