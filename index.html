@@ -410,11 +410,12 @@
     <!-- Gallery Section -->
     <section class="gallery" id="gallery">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Sacred Moments Gallery</h2>
-            <div class="gallery-container" data-aos="fade-up">
-                <div class="gallery-slider">
-                    <!-- Gallery images will be loaded here -->
-                </div>
+            <h2 class="section-title">Sacred Moments Gallery</h2>
+
+            <div class="gallery-container">
+                <div class="gallery-slider"></div>
+
+        <!-- Navigation Buttons -->
                 <div class="gallery-controls">
                     <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
                     <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
@@ -422,6 +423,8 @@
             </div>
         </div>
     </section>
+
+
 
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
@@ -521,16 +524,137 @@
                             <p>info@mokshayatra.com</p>
                         </div>
                     </div>
-                    <div class="map-container">
-                        <div id="map">
-                            <!-- Google Map will be embedded here -->
-                            <img src="assets/images/gaya-map.jpg" alt="Gaya Map" style="width:100%; height:200px; border-radius:10px;">
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
     </section>
+
+    <section class="map-section">
+        <!-- Map Heading -->
+        <div class="map-heading">
+            <h2>📍 Location — Sita Kund, Gaya (Bihar)</h2>
+            <p>Find us easily on Google Maps below</p>
+        </div>
+
+        <!-- Map Container -->
+        <div class="map-container">
+            <div id="map">
+                <!-- Google Map Embed for Sita Kund, Gaya -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3644.479122338517!2d85.0070666!3d24.7774081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f32c642a6b2c8d%3A0x947e3948a0a1ac0f!2sSita%20Kund%2C%20Gaya%2C%20Bihar%20823003!5e0!3m2!1sen!2sin!4v1730809000000!5m2!1sen!2sin"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- CSS Styling -->
+        <style>
+            /* Background with soft golden gradient + Om watermark */
+            .map-section {
+                position: relative;
+                padding: 100px 0;
+                background: linear-gradient(135deg, #f7e9c0 0%, #fff 100%);
+                overflow: hidden;
+            }
+
+            .map-section::before {
+                content: 'ॐ';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 18rem;
+                color: rgba(139, 0, 0, 0.03);
+                z-index: 0;
+                animation: floatOm 10s ease-in-out infinite;
+            }
+
+            @keyframes floatOm {
+                0%, 100% { transform: translate(-50%, -48%) rotate(0deg); }
+                50% { transform: translate(-50%, -52%) rotate(5deg); }
+            }
+
+            /* Heading styling */
+            .map-heading {
+                text-align: center;
+                margin-bottom: 2rem;
+                position: relative;
+                z-index: 2;
+            }
+
+            .map-heading h2 {
+                font-size: 2rem;
+                background: linear-gradient(135deg, #d4af37, #ffcc33);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+            }
+
+            .map-heading p {
+                font-size: 1rem;
+                color: rgba(0, 0, 0, 0.6);
+                margin-top: 0.3rem;
+            }
+
+            /* Map container styling */
+            .map-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                z-index: 1;
+            }
+
+            .map-container #map {
+                width: 90%;
+                max-width: 1000px;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+                border: 2px solid rgba(255, 215, 0, 0.5);
+                background: rgba(255, 255, 255, 0.4);
+                backdrop-filter: blur(8px);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .map-container:hover #map {
+                transform: scale(1.02);
+                box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            }
+
+            .map-container iframe {
+                width: 100%;
+                height: 230px; /* Bigger map height */
+                border: none;
+                border-radius: 15px;
+                filter: brightness(0.97) contrast(1.05);
+                transition: transform 0.4s ease, filter 0.4s ease;
+            }
+
+            .map-container:hover iframe {
+                filter: brightness(1) contrast(1.1);
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .map-section::before {
+                    font-size: 9rem;
+                }
+                .map-container iframe {
+                    height: 200px;
+                }
+                .map-heading h2 {
+                    font-size: 1.6rem;
+                }
+            }
+        </style>
+    </section>
+
+
 
     <!-- Audio Toggle -->
     <div class="audio-toggle" id="audio-toggle">
