@@ -1,66 +1,51 @@
-// Packages and booking functionality
-function initPackages() {
-    const modal = document.getElementById('booking-modal');
-    const closeModal = document.querySelector('.close-modal');
-    const selectPlanButtons = document.querySelectorAll('.select-plan');
-    const bookingForm = document.getElementById('booking-form');
-    const planSelect = document.getElementById('plan');
+// // Handle booking form submit
+// bookingForm.addEventListener("submit", async function (e) {
+//   e.preventDefault();
 
-    // Open modal when selecting a plan
-    selectPlanButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const plan = this.getAttribute('data-plan');
-            if (planSelect) {
-                planSelect.value = plan;
-            }
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
+//   const data = {
+//     name: document.getElementById("name").value,
+//     email: document.getElementById("email").value,
+//     mobile: document.getElementById("phone").value,
+//     address: "Gaya, Bihar",
+//     travelDate: document.getElementById("date").value,
+//     peopleCount: document.getElementById("people").value,
+//     planType: document.getElementById("plan").value,
+//     paymentType: document.getElementById("paymentType").value
+//   };
 
-    // Close modal
-    closeModal.addEventListener('click', function() {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    });
+//   if (!data.paymentType) {
+//     showToast("Please select payment option", "error");
+//     return;
+//   }
 
-    // Close modal when clicking outside
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
+//   try {
+//     const res = await fetch("http://localhost:3000/api/bookings/create", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(data)
+//     });
 
-    // Handle form submission
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Here you would typically integrate with EmailJS
-            // For now, we'll show a success message
-            showToast('Your booking request has been submitted successfully! We will contact you soon.', 'success');
-            
-            // Reset form and close modal
-            bookingForm.reset();
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-    }
+//     const result = await res.json();
 
-    // Add hover effects to package cards
-    const packageCards = document.querySelectorAll('.package-card');
-    packageCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-15px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            if (this.classList.contains('featured')) {
-                this.style.transform = 'scale(1.05)';
-            } else {
-                this.style.transform = 'translateY(0) scale(1)';
-            }
-        });
-    });
-}
+//     if (result.success) {
+//       showToast(
+//         `Booking Successful! 
+// Paid: ₹${result.paidAmount}, 
+// Remaining: ₹${result.remainingAmount}`,
+//         "success"
+//       );
+
+//       bookingForm.reset();
+//       modal.classList.remove("active");
+//       document.body.style.overflow = "auto";
+//     } else {
+//       showToast("Booking failed. Try again.", "error");
+//     }
+
+//   } catch (err) {
+//     console.error(err);
+//     showToast("Server error. Try later.", "error");
+//   }
+// });

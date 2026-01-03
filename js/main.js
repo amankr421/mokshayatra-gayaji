@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof initPackages === 'function') initPackages();
     if (typeof initGallery === 'function') initGallery();
     if (typeof initContact === 'function') initContact();
-    if (typeof initAudio === 'function') initAudio();
+    // if (typeof initAudio === 'function') initAudio();
 });
 
 // Loader

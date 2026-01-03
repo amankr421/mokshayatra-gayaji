@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MokshaYatra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            overflow-x: hidden;
+        }
+
+        .admin-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-header {
+            padding: 30px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-logo i {
+            font-size: 32px;
+            color: #ff6b6b;
+        }
+
+        .sidebar-logo h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-left: 47px;
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+
+        .menu-section-title {
+            padding: 15px 25px 10px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.5;
+            font-weight: 600;
+        }
+
+        .menu-item {
+            padding: 14px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-left-color: #ff6b6b;
+        }
+
+        .menu-item.active {
+            background: rgba(255, 107, 107, 0.15);
+            border-left-color: #ff6b6b;
+        }
+
+        .menu-item i {
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .menu-item span {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .menu-item .badge {
+            margin-left: auto;
+            background: #ff6b6b;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 20px 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .admin-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #ff8787);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .admin-info h4 {
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .admin-info p {
+            font-size: 0.75rem;
+            opacity: 0.6;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 30px;
+            width: calc(100% - 280px);
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title h1 {
+            font-size: 1.8rem;
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+
+        .page-title p {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .top-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        .search-bar input {
+            padding: 10px 15px 10px 40px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            width: 300px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .notification-btn {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: #f1f5f9;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .notification-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .notification-btn .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .stat-card.blue::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .stat-card.green::before { background: linear-gradient(90deg, #10b981, #34d399); }
+        .stat-card.orange::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .stat-card.purple::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .stat-card.blue .stat-icon {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .stat-card.green .stat-icon {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .stat-card.orange .stat-icon {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+
+        .stat-card.purple .stat-icon {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+
+        .stat-trend {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+        }
+
+        .stat-trend.up {
+            color: #10b981;
+        }
+
+        .stat-trend.down {
+            color: #ef4444;
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Bookings Table */
+        .table-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .table-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+
+        .table-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn, .export-btn {
+            padding: 10px 18px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            border-color: #ff6b6b;
+            color: #ff6b6b;
+        }
+
+        .filter-btn.active {
+            background: #ff6b6b;
+            color: white;
+            border-color: #ff6b6b;
+        }
+
+        .export-btn {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+
+        .export-btn:hover {
+            background: #059669;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #f8fafc;
+        }
+
+        th {
+            padding: 18px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        tbody tr {
+            transition: all 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        .booking-id {
+            font-weight: 700;
+            color: #ff6b6b;
+        }
+
+        .customer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .customer-name {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .customer-contact {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .package-badge {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .package-silver {
+            background: rgba(148, 163, 184, 0.2);
+            color: #475569;
+        }
+
+        .package-gold {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .package-platinum {
+            background: rgba(139, 92, 246, 0.2);
+            color: #8b5cf6;
+        }
+
+        .status-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-pending {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+        }
+
+        .status-approved {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+
+        .status-completed {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+        }
+
+        .status-cancelled {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-view {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .btn-approve {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .btn-reject {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .btn-whatsapp {
+            background: rgba(37, 211, 102, 0.1);
+            color: #25d366;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+
+        .modal-close {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            border: none;
+            background: #f1f5f9;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #e2e8f0;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .detail-group {
+            margin-bottom: 25px;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .detail-value {
+            font-size: 1rem;
+            color: #1a1a2e;
+            font-weight: 500;
+        }
+
+        .payment-breakdown {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .payment-row:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ff6b6b;
+            padding-top: 15px;
+        }
+
+        .modal-actions {
+            padding: 20px 30px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 1.3rem;
+            color: #475569;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .search-bar input {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px 15px;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-bar input {
+                width: 100%;
+            }
+
+            .table-filters {
+                width: 100%;
+            }
+
+            .filter-btn, .export-btn {
+                flex: 1;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 12px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-om"></i>
+                    <h2>MokshaYatra</h2>
+                </div>
+                <div class="sidebar-subtitle">Sacred Pilgrimage System</div>
+            </div>
+
+            <div class="sidebar-menu">
+                <div class="menu-section-title">Main Menu</div>
+                <div class="menu-item active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="menu-item" data-section="bookings">
+                    <i class="fas fa-book-open"></i>
+                    <span>Bookings</span>
+                    <span class="badge" id="total-bookings-badge">0</span>
+                </div>
+                <div class="menu-item" data-section="payments">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Payments</span>
+                    <span class="badge" id="pending-payments-badge">0</span>
+                </div>
+                <div class="menu-item" data-section="packages">
+                    <i class="fas fa-box"></i>
+                    <span>Packages</span>
+                </div>
+                <div class="menu-item" data-section="customers">
+                    <i class="fas fa-users"></i>
+                    <span>Customers</span>
+                </div>
+
+                <div class="menu-section-title">Reports</div>
+                <div class="menu-item" data-section="reports">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Reports</span>
+                </div>
+                <div class="menu-item" data-section="analytics">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Analytics</span>
+                </div>
+
+                <div class="menu-section-title">Settings</div>
+                <div class="menu-item" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="admin-profile">
+                    <div class="admin-avatar">A</div>
+                    <div class="admin-info">
+                        <h4>Admin</h4>
+                        <p id="admin-email-display">admin@mokshayatra.com</p>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="page-title">
+                    <h1 id="page-main-title">Dashboard Overview</h1>
+                    <p id="page-subtitle">Welcome back! Here's what's happening today.</p>
+                </div>
+                <div class="top-actions">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="global-search" placeholder="Search bookings, customers...">
+                    </div>
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge" id="notification-count">3</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div class="content-section active" id="dashboard-section">
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card blue">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-label">Total Bookings</div>
+                                <div class="stat-value" id="stat-total-bookings">0</div>
+                                <div class="stat-trend up">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>12% from last month</span>
+                                </div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card green">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-label">Total Revenue</div>
+                                <div class="stat-value" id="stat-total-revenue">₹0</div>
+                                <div class="stat-trend up">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>8% from last month</span>
+                                </div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-rupee-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card orange">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-label">Pending Approvals</div>
+                                <div class="stat-value" id="stat-pending-payments">0</div>
+                                <div class="stat-trend">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Requires attention</span>
+                                </div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-hourglass-half"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card purple">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-label">Total Customers</div>
+                                <div class="stat-value" id="stat-total-customers">0</div>
+                                <div class="stat-trend up">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>15% from last week</span>
+                                </div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Bookings -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <h2 class="table-title">Recent Bookings</h2>
+                        <div class="table-filters">
+                            <button class="filter-btn active" data-filter="all">
+                                <i class="fas fa-list"></i> All
+                            </button>
+                            <button class="filter-btn" data-filter="pending">
+                                <i class="fas fa-clock"></i> Pending
+                            </button>
+                            <button class="filter-btn" data-filter="approved">
+                                <i class="fas fa-check"></i> Approved
+                            </button>
+                            <button class="export-btn" id="export-csv">
+                                <i class="fas fa-download"></i> Export CSV
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="bookings-table">
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Customer</th>
+                                    <th>Package</th>
+                                    <th>Travel Date</th>
+                                    <th>Amount</th>
+                                    <th>Payment Status</th>
+                                    <th>Booking Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bookings-tbody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookings Section -->
+            <div class="content-section" id="bookings-section">
+                <div class="table-card">
+                    <div class="table-header">
+                        <h2 class="table-title">All Bookings</h2>
+                        <div class="table-filters">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="today">Today</button>
+                            <button class="filter-btn" data-filter="week">This Week</button>
+                            <button class="filter-btn" data-filter="month">This Month</button>
+                            <button class="export-btn" id="export-bookings-csv">
+                                <i class="fas fa-download"></i> Export
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Customer</th>
+                                    <th>Package</th>
+                                    <th>Travel Date</th>
+                                    <th>People</th>
+                                    <th>Amount</th>
+                                    <th>Payment</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="all-bookings-tbody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payments Section -->
+            <div class="content-section" id="payments-section">
+                <div class="table-card">
+                    <div class="table-header">
+                        <h2 class="table-title">Payment Management</h2>
+                        <div class="table-filters">
+                            <button class="filter-btn active" data-filter="all">All Payments</button>
+                            <button class="filter-btn" data-filter="pending">Pending Verification</button>
+                            <button class="filter-btn" data-filter="approved">Approved</button>
+                            <button class="filter-btn" data-filter="rejected">Rejected</button>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Customer</th>
+                                    <th>Total Amount</th>
+                                    <th>Paid Amount</th>
+                                    <th>Remaining</th>
+                                    <th>Payment Type</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payments-tbody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Sections (Placeholder) -->
+            <div class="content-section" id="packages-section">
+                <div class="empty-state">
+                    <i class="fas fa-box-open"></i>
+                    <h3>Packages Management</h3>
+                    <p>Manage your pilgrimage packages here</p>
+                </div>
+            </div>
+
+            <div class="content-section" id="customers-section">
+                <div class="empty-state">
+                    <i class="fas fa-users"></i>
+                    <h3>Customer Management</h3>
+                    <p>View and manage customer information</p>
+                </div>
+            </div>
+
+            <div class="content-section" id="reports-section">
+                <div class="empty-state">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Reports</h3>
+                    <p>Generate and download reports</p>
+                </div>
+            </div>
+
+            <div class="content-section" id="analytics-section">
+                <div class="empty-state">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Analytics</h3>
+                    <p>View detailed analytics and insights</p>
+                </div>
+            </div>
+
+            <div class="content-section" id="settings-section">
+                <div class="empty-state">
+                    <i class="fas fa-cog"></i>
+                    <h3>Settings</h3>
+                    <p>Configure your admin panel settings</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Detail Modal -->
+    <div class="modal" id="booking-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Booking Details</h2>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-booking-details">
+                <!-- Details will be loaded here -->
+            </div>
+            <div class="modal-actions" id="modal-actions">
+                <!-- Action buttons will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Backend API URL
+        const API_URL = 'http://localhost:3000/api/bookings';
+        
+        // Global state
+        let allBookings = [];
+        let currentFilter = 'all';
+        let currentSection = 'dashboard';
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            initializeEventListeners();
+            loadAllBookings();
+        });
+
+        // Check authentication
+        function checkAuth() {
+            if (!localStorage.getItem('adminLoggedIn')) {
+                window.location.href = 'admin-login.html';
+                return;
+            }
+            
+            const adminEmail = localStorage.getItem('adminEmail');
+            if (adminEmail) {
+                document.getElementById('admin-email-display').textContent = adminEmail;
+                const initial = adminEmail.charAt(0).toUpperCase();
+                document.querySelector('.admin-avatar').textContent = initial;
+            }
+        }
+
+        // Initialize event listeners
+        function initializeEventListeners() {
+            // Sidebar navigation
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const section = item.dataset.section;
+                    switchSection(section);
+                });
+            });
+
+            // Logout
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                if (confirm('Are you sure you want to logout?')) {
+                    localStorage.removeItem('adminLoggedIn');
+                    localStorage.removeItem('adminEmail');
+                    window.location.href = 'admin-login.html';
+                }
+            });
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.dataset.filter;
+                    setActiveFilter(btn);
+                    filterBookings(filter);
+                });
+            });
+
+            // Export CSV
+            document.getElementById('export-csv')?.addEventListener('click', exportToCSV);
+            document.getElementById('export-bookings-csv')?.addEventListener('click', exportToCSV);
+
+            // Global search
+            document.getElementById('global-search').addEventListener('input', (e) => {
+                searchBookings(e.target.value);
+            });
+        }
+
+        // Switch between sections
+        function switchSection(section) {
+            currentSection = section;
+            
+            // Update active menu item
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.menu-item').classList.add('active');
+
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(`${section}-section`).classList.add('active');
+
+            // Update page title
+            const titles = {
+                dashboard: 'Dashboard Overview',
+                bookings: 'All Bookings',
+                payments: 'Payment Management',
+                packages: 'Package Management',
+                customers: 'Customer Management',
+                reports: 'Reports & Analytics',
+                analytics: 'Business Analytics',
+                settings: 'Admin Settings'
+            };
+
+            document.getElementById('page-main-title').textContent = titles[section];
+
+            // Load section-specific data
+            if (section === 'bookings') {
+                renderAllBookings();
+            } else if (section === 'payments') {
+                renderPayments();
+            }
+        }
+
+        // Load all bookings from backend
+        async function loadAllBookings() {
+            try {
+                const response = await fetch(`${API_URL}/all`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    allBookings = result.data;
+                    updateDashboard();
+                    renderRecentBookings();
+                }
+            } catch (error) {
+                console.error('Error loading bookings:', error);
+                showError('Failed to load bookings');
+            }
+        }
+
+        // Update dashboard statistics
+        function updateDashboard() {
+            const totalBookings = allBookings.length;
+            const totalRevenue = allBookings.reduce((sum, b) => sum + (b.payment?.paidAmount || 0), 0);
+            const pendingPayments = allBookings.filter(b => (b.payment?.remainingAmount || 0) > 0).length;
+            const totalCustomers = new Set(allBookings.map(b => b.mobile)).size;
+
+            // Update stat cards
+            document.getElementById('stat-total-bookings').textContent = totalBookings;
+            document.getElementById('stat-total-revenue').textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
+            document.getElementById('stat-pending-payments').textContent = pendingPayments;
+            document.getElementById('stat-total-customers').textContent = totalCustomers;
+
+            // Update badges
+            document.getElementById('total-bookings-badge').textContent = totalBookings;
+            document.getElementById('pending-payments-badge').textContent = pendingPayments;
+            document.getElementById('notification-count').textContent = pendingPayments;
+        }
+
+        // Render recent bookings (last 10)
+        function renderRecentBookings() {
+            const tbody = document.getElementById('bookings-tbody');
+            const recentBookings = [...allBookings]
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                .slice(0, 10);
+
+            if (recentBookings.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align: center; padding: 40px;">
+                            <i class="fas fa-inbox" style="font-size: 48px; color: #cbd5e1; margin-bottom: 10px;"></i>
+                            <p style="color: #94a3b8;">No bookings found</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = recentBookings.map(booking => createBookingRow(booking)).join('');
+        }
+
+        // Render all bookings
+        function renderAllBookings() {
+            const tbody = document.getElementById('all-bookings-tbody');
+            const sortedBookings = [...allBookings]
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            if (sortedBookings.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 40px;">
+                            <i class="fas fa-inbox" style="font-size: 48px; color: #cbd5e1; margin-bottom: 10px;"></i>
+                            <p style="color: #94a3b8;">No bookings found</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = sortedBookings.map(booking => createFullBookingRow(booking)).join('');
+        }
+
+        // Render payments
+        function renderPayments() {
+            const tbody = document.getElementById('payments-tbody');
+            const sortedBookings = [...allBookings]
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            if (sortedBookings.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align: center; padding: 40px;">
+                            <i class="fas fa-inbox" style="font-size: 48px; color: #cbd5e1; margin-bottom: 10px;"></i>
+                            <p style="color: #94a3b8;">No payments found</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = sortedBookings.map(booking => createPaymentRow(booking)).join('');
+        }
+
+        // Create booking row HTML
+        function createBookingRow(booking) {
+            const status = getBookingStatus(booking);
+            const paymentStatus = getPaymentStatus(booking);
+            
+            return `
+                <tr>
+                    <td><span class="booking-id">${booking.bookingId}</span></td>
+                    <td>
+                        <div class="customer-info">
+                            <span class="customer-name">${booking.name}</span>
+                            <span class="customer-contact">${booking.mobile}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="package-badge package-${booking.package.type.toLowerCase()}">
+                            ${booking.package.type}
+                        </span>
+                    </td>
+                    <td>${formatDate(booking.travelDate)}</td>
+                    <td>₹${booking.package.price.toLocaleString('en-IN')}</td>
+                    <td><span class="status-badge status-${paymentStatus.class}">${paymentStatus.text}</span></td>
+                    <td><span class="status-badge status-${status.class}">${status.text}</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn btn-view" onclick="viewBooking('${booking.bookingId}')" title="View Details">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            ${paymentStatus.class === 'pending' ? `
+                                <button class="action-btn btn-approve" onclick="approvePayment('${booking.bookingId}')" title="Approve">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn btn-reject" onclick="rejectPayment('${booking.bookingId}')" title="Reject">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            ` : ''}
+                            <button class="action-btn btn-whatsapp" onclick="sendWhatsApp('${booking.mobile}', '${booking.name}')" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        // Create full booking row
+        function createFullBookingRow(booking) {
+            const status = getBookingStatus(booking);
+            const paymentStatus = getPaymentStatus(booking);
+            
+            return `
+                <tr>
+                    <td><span class="booking-id">${booking.bookingId}</span></td>
+                    <td>
+                        <div class="customer-info">
+                            <span class="customer-name">${booking.name}</span>
+                            <span class="customer-contact">${booking.mobile} • ${booking.email}</span>
+                        </div>
+                    </td>
+                    <td><span class="package-badge package-${booking.package.type.toLowerCase()}">${booking.package.type}</span></td>
+                    <td>${formatDate(booking.travelDate)}</td>
+                    <td>${booking.numPeople || 1}</td>
+                    <td>₹${booking.package.price.toLocaleString('en-IN')}</td>
+                    <td><span class="status-badge status-${paymentStatus.class}">${paymentStatus.text}</span></td>
+                    <td><span class="status-badge status-${status.class}">${status.text}</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn btn-view" onclick="viewBooking('${booking.bookingId}')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            ${paymentStatus.class === 'pending' ? `
+                                <button class="action-btn btn-approve" onclick="approvePayment('${booking.bookingId}')">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            ` : ''}
+                            <button class="action-btn btn-whatsapp" onclick="sendWhatsApp('${booking.mobile}', '${booking.name}')">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        // Create payment row
+        function createPaymentRow(booking) {
+            const paymentStatus = getPaymentStatus(booking);
+            const remaining = booking.payment.remainingAmount || 0;
+            
+            return `
+                <tr>
+                    <td><span class="booking-id">${booking.bookingId}</span></td>
+                    <td>
+                        <div class="customer-info">
+                            <span class="customer-name">${booking.name}</span>
+                            <span class="customer-contact">${booking.mobile}</span>
+                        </div>
+                    </td>
+                    <td>₹${booking.package.price.toLocaleString('en-IN')}</td>
+                    <td>₹${booking.payment.paidAmount.toLocaleString('en-IN')}</td>
+                    <td style="color: ${remaining > 0 ? '#f59e0b' : '#10b981'}; font-weight: 600;">
+                        ₹${remaining.toLocaleString('en-IN')}
+                    </td>
+                    <td>${booking.payment.type}</td>
+                    <td><span class="status-badge status-${paymentStatus.class}">${paymentStatus.text}</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn btn-view" onclick="viewBooking('${booking.bookingId}')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            ${paymentStatus.class === 'pending' ? `
+                                <button class="action-btn btn-approve" onclick="approvePayment('${booking.bookingId}')">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn btn-reject" onclick="rejectPayment('${booking.bookingId}')">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            ` : ''}
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        // Get booking status
+        function getBookingStatus(booking) {
+            if (booking.payment.remainingAmount === 0) {
+                return { text: 'Completed', class: 'completed' };
+            } else if (booking.payment.paidAmount > 0) {
+                return { text: 'Approved', class: 'approved' };
+            } else {
+                return { text: 'Pending', class: 'pending' };
+            }
+        }
+
+        // Get payment status
+        function getPaymentStatus(booking) {
+            if (booking.payment.remainingAmount === 0) {
+                return { text: 'Paid', class: 'approved' };
+            } else if (booking.payment.paidAmount > 0) {
+                return { text: 'Partial', class: 'pending' };
+            } else {
+                return { text: 'Pending', class: 'pending' };
+            }
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-IN', { 
+                day: '2-digit', 
+                month: 'short', 
+                year: 'numeric' 
+            });
+        }
+
+        // View booking details
+        function viewBooking(bookingId) {
+            const booking = allBookings.find(b => b.bookingId === bookingId);
+            if (!booking) return;
+
+            const modal = document.getElementById('booking-modal');
+            const detailsDiv = document.getElementById('modal-booking-details');
+            const actionsDiv = document.getElementById('modal-actions');
+
+            const remaining = booking.payment.remainingAmount || 0;
+            const paymentStatus = getPaymentStatus(booking);
+
+            detailsDiv.innerHTML = `
+                <div class="detail-group">
+                    <div class="detail-label">Booking ID</div>
+                    <div class="detail-value">${booking.bookingId}</div>
+                </div>
+                <div class="detail-group">
+                    <div class="detail-label">Customer Name</div>
+                    <div class="detail-value">${booking.name}</div>
+                </div>
+                <div class="detail-group">
+                    <div class="detail-label">Contact Information</div>
+                    <div class="detail-value">${booking.mobile}<br>${booking.email}</div>
+                </div>
+                <div class="detail-group">
+                    <div class="detail-label">Package</div>
+                    <div class="detail-value">
+                        <span class="package-badge package-${booking.package.type.toLowerCase()}">${booking.package.type}</span>
+                    </div>
+                </div>
+                <div class="detail-group">
+                    <div class="detail-label">Travel Date</div>
+                    <div class="detail-value">${formatDate(booking.travelDate)}</div>
+                </div>
+                <div class="detail-group">
+                    <div class="detail-label">Number of People</div>
+                    <div class="detail-value">${booking.numPeople || 1} Person(s)</div>
+                </div>
+                <div class="detail-group">
+                    <div class="detail-label">Booking Date</div>
+                    <div class="detail-value">${new Date(booking.createdAt).toLocaleString('en-IN')}</div>
+                </div>
+                <div class="payment-breakdown">
+                    <h3 style="margin-bottom: 15px; color: #1a1a2e;">Payment Details</h3>
+                    <div class="payment-row">
+                        <span>Total Amount:</span>
+                        <span>₹${booking.package.price.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div class="payment-row">
+                        <span>Paid Amount:</span>
+                        <span style="color: #10b981;">₹${booking.payment.paidAmount.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div class="payment-row">
+                        <span>Remaining Amount:</span>
+                        <span style="color: ${remaining > 0 ? '#f59e0b' : '#10b981'};">₹${remaining.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div class="payment-row">
+                        <span>Payment Type:</span>
+                        <span>${booking.payment.type}</span>
+                    </div>
+                    <div class="payment-row">
+                        <span>Payment Status:</span>
+                        <span class="status-badge status-${paymentStatus.class}">${paymentStatus.text}</span>
+                    </div>
+                </div>
+            `;
+
+            actionsDiv.innerHTML = `
+                <button class="modal-btn btn-secondary" onclick="closeModal()">
+                    <i class="fas fa-times"></i> Close
+                </button>
+                ${paymentStatus.class === 'pending' ? `
+                    <button class="modal-btn btn-danger" onclick="rejectPayment('${bookingId}')">
+                        <i class="fas fa-times-circle"></i> Reject Payment
+                    </button>
+                    <button class="modal-btn btn-primary" onclick="approvePayment('${bookingId}')">
+                        <i class="fas fa-check-circle"></i> Approve Payment
+                    </button>
+                ` : `
+                    <button class="modal-btn btn-primary" onclick="sendWhatsApp('${booking.mobile}', '${booking.name}')">
+                        <i class="fab fa-whatsapp"></i> Send WhatsApp
+                    </button>
+                `}
+            `;
+
+            modal.classList.add('active');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('booking-modal').classList.remove('active');
+        }
+
+        // Approve payment
+        function approvePayment(bookingId) {
+            if (confirm('Are you sure you want to approve this payment?')) {
+                const booking = allBookings.find(b => b.bookingId === bookingId);
+                if (booking) {
+                    booking.payment.remainingAmount = 0;
+                    booking.payment.paidAmount = booking.package.price;
+                    
+                    updateDashboard();
+                    renderRecentBookings();
+                    renderAllBookings();
+                    renderPayments();
+                    closeModal();
+                    
+                    alert(`Payment approved for booking ${bookingId}`);
+                }
+            }
+        }
+
+        // Reject payment
+        function rejectPayment(bookingId) {
+            const reason = prompt('Enter rejection reason:');
+            if (reason) {
+                alert(`Payment rejected for booking ${bookingId}\nReason: ${reason}`);
+                closeModal();
+            }
+        }
+
+        // Send WhatsApp message
+        function sendWhatsApp(mobile, name) {
+            const message = encodeURIComponent(`Hello ${name}, this is MokshaYatra. Your booking has been confirmed!`);
+            window.open(`https://wa.me/91${mobile}?text=${message}`, '_blank');
+        }
+
+        // Filter bookings
+        function filterBookings(filter) {
+            currentFilter = filter;
+            // Implement filtering logic based on filter value
+            renderRecentBookings();
+        }
+
+        // Set active filter button
+        function setActiveFilter(btn) {
+            btn.parentElement.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('active');
+            });
+            btn.classList.add('active');
+        }
+
+        // Search bookings
+        function searchBookings(query) {
+            const lowerQuery = query.toLowerCase();
+            const filtered = allBookings.filter(b => 
+                b.bookingId.toLowerCase().includes(lowerQuery) ||
+                b.name.toLowerCase().includes(lowerQuery) ||
+                b.mobile.includes(query) ||
+                b.email.toLowerCase().includes(lowerQuery)
+            );
+            
+            // Update display with filtered results
+            const tbody = document.getElementById('bookings-tbody');
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align: center; padding: 40px;">
+                            <i class="fas fa-search" style="font-size: 48px; color: #cbd5e1; margin-bottom: 10px;"></i>
+                            <p style="color: #94a3b8;">No results found for "${query}"</p>
+                        </td>
+                    </tr>
+                `;
+            } else {
+                tbody.innerHTML = filtered.map(booking => createBookingRow(booking)).join('');
+            }
+        }
+
+        // Export to CSV
+        function exportToCSV() {
+            const csvContent = generateCSV(allBookings);
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `mokshayatra_bookings_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Generate CSV content
+        function generateCSV(bookings) {
+            const headers = ['Booking ID', 'Name', 'Mobile', 'Email', 'Package', 'Travel Date', 'People', 'Total Amount', 'Paid Amount', 'Remaining', 'Payment Type', 'Booking Date'];
+            const rows = bookings.map(b => [
+                b.bookingId,
+                b.name,
+                b.mobile,
+                b.email,
+                b.package.type,
+                formatDate(b.travelDate),
+                b.numPeople || 1,
+                b.package.price,
+                b.payment.paidAmount,
+                b.payment.remainingAmount || 0,
+                b.payment.type,
+                new Date(b.createdAt).toLocaleString('en-IN')
+            ]);
+            
+            return [headers, ...rows].map(row => row.join(',')).join('\n');
+        }
+
+        // Show error message
+        function showError(message) {
+            alert(message);
+        }
+
+        // Click outside modal to close
+        document.getElementById('booking-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'booking-modal') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
+
